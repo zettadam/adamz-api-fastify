@@ -1,0 +1,32 @@
+{
+  "name": "adamz-api-fastify",
+  "private": true,
+  "version": "0.0.1",
+  "description": "API server for adamz built with Fastify",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "build": "rm -rf ./dist && tsc",
+    "start": "node ./dist/index.js",
+    "typecheck": "tsc --noEmit"
+  },
+  "author": "Adam Ziolkowski <zett.adam@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@fastify/autoload": "5.10.0",
+    "@fastify/postgres": "5.2.2",
+    "@fastify/sensible": "5.6.0",
+    "@fastify/type-provider-typebox": "4.0.0",
+    "@sinclair/typebox": "0.32.35",
+    "dotenv": "16.4.5",
+    "fastify": "4.28.1",
+    "fastify-plugin": "4.5.1",
+    "pg": "8.12.0"
+  },
+  "devDependencies": {
+    "@types/node": "22.1.0",
+    "@types/pg": "8.11.6",
+    "prettier": "3.3.3",
+    "typescript": "5.5.4"
+  }
+}

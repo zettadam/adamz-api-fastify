@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022"],
+    "module": "Node16",
+    "skipLibCheck": true,
+
+    // mode
+    "moduleResolution": "NodeNext",
+
+    "outDir": "./dist",
+
+    // linter
+    "strict": true,
+
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["./src/*"]
+    }
+  }
+}
