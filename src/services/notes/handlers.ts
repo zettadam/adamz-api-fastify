@@ -17,7 +17,7 @@ export function createOne(
   const { pg } = req.server
   const {
     body = '',
-    published_at = null,
+    published_at,
     significance = 0,
     tags = '',
     title,
@@ -33,7 +33,7 @@ export function createOne(
   queryReply(
     pg,
     q.createOne,
-    [title, body, significance, published_at, tag_array],
+    [title, body, significance, published_at || null, tag_array],
     res,
   )
 }
@@ -64,7 +64,7 @@ export function updateOne(
   const { pg } = req.server
   const {
     body = '',
-    published_at = null,
+    published_at,
     significance = 0,
     tags = '',
     title,
@@ -81,7 +81,7 @@ export function updateOne(
   queryReply(
     pg,
     q.updateOne,
-    [id, title, body, significance, published_at, tag_array],
+    [id, title, body, significance, published_at || null, tag_array],
     res,
   )
 }

@@ -18,7 +18,7 @@ export function createOne(
   const {
     abstract = '',
     body = '',
-    published_at = null,
+    published_at,
     significance = 0,
     slug,
     tags = '',
@@ -35,7 +35,15 @@ export function createOne(
   queryReply(
     pg,
     q.createOne,
-    [title, slug, abstract, body, significance, published_at, tag_array],
+    [
+      title,
+      slug,
+      abstract,
+      body,
+      significance,
+      published_at || null,
+      tag_array,
+    ],
     res,
   )
 }
@@ -67,7 +75,7 @@ export function updateOne(
   const {
     abstract = '',
     body = '',
-    published_at = null,
+    published_at,
     significance = 0,
     slug,
     tags = '',
@@ -85,7 +93,16 @@ export function updateOne(
   queryReply(
     pg,
     q.updateOne,
-    [id, title, slug, abstract, body, significance, published_at, tag_array],
+    [
+      id,
+      title,
+      slug,
+      abstract,
+      body,
+      significance,
+      published_at || null,
+      tag_array,
+    ],
     res,
   )
 }
