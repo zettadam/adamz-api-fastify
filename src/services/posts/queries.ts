@@ -3,9 +3,9 @@ const queries = {
 
   createOne: `
     INSERT INTO public.posts (
-        title, slug, abstract, body, significance, published_at
+        title, slug, abstract, body, significance, published_at, tags
     ) VALUES (
-        $1, $2, $3, $4, $5, $6
+        $1, $2, $3, $4, $5, $6, $7
     ) RETURNING id;
   `,
 
@@ -22,6 +22,7 @@ const queries = {
         body = $5,
         significance = $6,
         published_at = $7,
+        tags = $8,
         updated_at = NOW()
     WHERE id = $1
     RETURNING *;

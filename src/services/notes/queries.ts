@@ -3,7 +3,7 @@ const queries = {
 
   createOne: `
     INSERT INTO public.notes (
-        title, slug, body, significance, published_at
+        title, slug, body, significance, published_at, tags
     ) VALUES (
         $1, $2, $3, $4, $5, $6
     ) RETURNING id;
@@ -21,6 +21,7 @@ const queries = {
         body = $4,
         significance = $5,
         published_at = $6,
+        tags = $7,
         updated_at = NOW()
     WHERE id = $1
     RETURNING *;

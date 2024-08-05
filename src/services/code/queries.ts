@@ -3,9 +3,9 @@ const queries = {
 
   createOne: `
     INSERT INTO public.code_snippets (
-        title, body, language, published_at
+        title, description, body, language, published_at, tags
     ) VALUES (
-        $1, $2, $3, $4
+        $1, $2, $3, $4, $5, $6
     ) RETURNING id;
   `,
 
@@ -17,9 +17,11 @@ const queries = {
   updateOne: `
     UPDATE public.code_snippets
     SET title = $2,
-        body = $3,
-        language = $4,
-        published_at = $5,
+        description = $3,
+        body = $4,
+        language = $5,
+        published_at = $6,
+        tags = $7,
         updated_at = NOW()
     WHERE id = $1
     RETURNING *;

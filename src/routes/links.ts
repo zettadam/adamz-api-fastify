@@ -11,7 +11,7 @@ export default function (
   _: FastifyPluginOptions,
   next: (error?: Error) => void,
 ): void {
-  f.post('/', {}, h.createOne)
+  f.post('/new', {}, h.createOne)
   f.get('/:id', {}, h.readOne)
   f.put('/:id', {}, h.updateOne)
   f.delete('/:id', {}, h.deleteOne)

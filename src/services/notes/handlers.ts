@@ -4,38 +4,36 @@ import type { FastifyRequest as Request, FastifyReply as Reply } from 'fastify'
 /* --- local imports ------------------------------------------------------- */
 import queryReply from '../../helpers/queryReply.js'
 import q from './queries.js'
+import { NoteRequest } from './models.js'
 
 /* --- end of imports ------------------------------------------------------ */
 
 /* CRUD -------------------------------------------------------------------- */
 
 export function createOne(
-  req: Request<{
-    Body: {
-      abstract?: string
-      body?: string
-      published_at?: string
-      significance?: number
-      slug: string
-      title: string
-    }
-  }>,
+  req: Request<{ Body: NoteRequest }>,
   res: Reply,
 ): void {
   const { pg } = req.server
   const {
-    abstract = '',
     body = '',
-    published_at = '',
+    published_at = null,
     significance = 0,
-    slug,
+    tags = '',
     title,
   } = req.body
+
+  const tag_array = tags
+    ? `{${tags
+        .split(',')
+        .map((t) => t.trim())
+        .join(',')}}`
+    : `{}`
 
   queryReply(
     pg,
     q.createOne,
-    [title, slug, abstract, body, significance, published_at],
+    [title, body, significance, published_at, tag_array],
     res,
   )
 }
@@ -58,33 +56,32 @@ export function readLatest(req: Request, res: Reply): void {
 
 export function updateOne(
   req: Request<{
-    Body: {
-      abstract?: string
-      body?: string
-      published_at?: string
-      significance?: number
-      slug: string
-      title: string
-    }
+    Body: NoteRequest
     Params: { id: string }
   }>,
   res: Reply,
 ): void {
   const { pg } = req.server
   const {
-    abstract = '',
     body = '',
-    published_at = '',
+    published_at = null,
     significance = 0,
-    slug,
+    tags = '',
     title,
   } = req.body
   const { id } = req.params
 
+  const tag_array = tags
+    ? `{${tags
+        .split(',')
+        .map((t) => t.trim())
+        .join(',')}}`
+    : `{}`
+
   queryReply(
     pg,
     q.updateOne,
-    [id, title, slug, abstract, body, significance, published_at],
+    [id, title, body, significance, published_at, tag_array],
     res,
   )
 }

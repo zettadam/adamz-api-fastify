@@ -7,7 +7,7 @@ export const Event = Type.Object({
   start_time: Type.String({ maxLength: 50 }),
   end_time: Type.String({ maxLength: 50 }),
   created_at: Type.String({ maxLength: 50 }),
-  updated_at: Type.Optional(Type.String({ maxLength: 50 })),
+  updated_at: Type.Union([Type.Null(), Type.String({ maxLength: 50 })]),
 })
 
 export type EventReply = Static<typeof Event>

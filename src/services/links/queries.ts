@@ -3,9 +3,9 @@ const queries = {
 
   createOne: `
     INSERT INTO public.links (
-        url, title, description
+        url, title, description, tags
     ) VALUES (
-        $1, $2, $3
+        $1, $2, $3, $4
     ) RETURNING id;
   `,
 
@@ -19,6 +19,7 @@ const queries = {
     SET url = $2,
         title = $3,
         description = $4,
+        tags = $5,
         updated_at = NOW()
     WHERE id = $1
     RETURNING *;

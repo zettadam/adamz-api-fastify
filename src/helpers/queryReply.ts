@@ -4,7 +4,7 @@ import type { FastifyReply } from 'fastify'
 export default async function queryReply(
   pg: PostgresDb & Record<string, PostgresDb>,
   sql: string,
-  params: (string | number)[],
+  params: (string | number | (string | number)[] | null)[],
   reply: FastifyReply,
 ) {
   try {

@@ -18,14 +18,26 @@ import type { Config } from './types.js'
 
 /* --- end of imports ------------------------------------------------------ */
 
-export default function buildServer(config: Config) {
-  const server = Fastify({
-    logger: {
-      transport: {
-        target: 'pino-pretty',
+const envToLogger = {
+  development: {
+    transport: {
+      target: 'pino-pretty',
+      options: {
+        translateTime: 'HH:MM:ss Z',
+        ignore: 'pid,hostname',
       },
     },
+  },
+  production: true,
+  test: false,
+}
+
+export default function buildServer(config: Config) {
+  const server = Fastify({
+    logger: envToLogger[config.environment] ?? true,
   }).withTypeProvider<TypeBoxTypeProvider>()
+
+  console.log('Config', JSON.stringify(config))
 
   server.register(fastifySensible, {
     sharedSchemaId: 'HttpError',

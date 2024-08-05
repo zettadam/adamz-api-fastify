@@ -6,8 +6,10 @@ export const CodeSnippet = Type.Object({
   description: Type.Optional(Type.String({ maxLength: 1000 })),
   language: Type.String({ maxLength: 50 }),
   body: Type.String(),
+  published_at: Type.Union([Type.Null(), Type.String({ maxLength: 50 })]),
+  tags: Type.Optional(Type.String({ maxLength: 1000 })),
   created_at: Type.String({ maxLength: 50 }),
-  updated_at: Type.Optional(Type.String({ maxLength: 50 })),
+  updated_at: Type.Union([Type.Null(), Type.String({ maxLength: 50 })]),
 })
 
 export type CodeSnippetReply = Static<typeof CodeSnippet>

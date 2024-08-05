@@ -1,7 +1,13 @@
 import process from 'node:process'
 
+/* --- vendor imports ------------------------------------------------------ */
+import 'dotenv/config'
+
+/* --- local imports ------------------------------------------------------- */
 import config from './config.js'
 import buildServer from './server.js'
+
+/* --- end of imports ------------------------------------------------------ */
 
 const server = buildServer(config)
 

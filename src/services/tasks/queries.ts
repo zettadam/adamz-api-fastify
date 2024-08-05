@@ -3,9 +3,9 @@ const queries = {
 
   createOne: `
     INSERT INTO public.tasks (
-        title, description
+        title, description, tags
     ) VALUES (
-        $1, $2
+        $1, $2, $3
     ) RETURNING id;
   `,
 
@@ -17,7 +17,8 @@ const queries = {
   updateOne: `
     UPDATE public.tasks
     SET title = $2, 
-        description = $3, 
+        description = $3,
+        tags = $4,
         updated_at = NOW()
     WHERE id = $1
     RETURNING *;

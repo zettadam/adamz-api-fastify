@@ -16,8 +16,11 @@ export type FastifyTypebox = FastifyInstance<
 >
 
 export type LogLevel = 'INFO' | 'WARN' | 'ERROR' | 'ALL'
+export type Environment = 'development' | 'production' | 'test'
 
 export interface Config {
+  environment: Environment
+
   host: string
   port: number
 
