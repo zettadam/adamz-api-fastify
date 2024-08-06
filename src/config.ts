@@ -16,7 +16,7 @@ const config: Config = {
   // Database
   dbUser: process.env.PGUSER ?? '',
   dbPassword: process.env.PGPASSWORD ?? '',
-  dbHost: process.env.PGHOST ?? 'localhost',
+  dbHost: process.env.PGHOST ?? '127.0.0.1',
   dbPort: Number(process.env.PGPORT) ?? 5432,
   dbName: process.env.PGDATABASE ?? '',
 }

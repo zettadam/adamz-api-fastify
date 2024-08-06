@@ -36,7 +36,7 @@ export function createOne(
   queryReply(
     pg,
     q.createOne,
-    [title, description, body, language, published_at, tag_array],
+    [title, description, body, language, published_at || null, tag_array],
     res,
   )
 }
@@ -75,6 +75,8 @@ export function updateOne(
   } = req.body
   const { id } = req.params
 
+  console.log('body', JSON.stringify(req.body))
+
   const tag_array = tags
     ? `{${tags
         .split(',')
@@ -85,7 +87,7 @@ export function updateOne(
   queryReply(
     pg,
     q.updateOne,
-    [id, title, description, body, language, published_at, tag_array],
+    [id, title, description, body, language, published_at || null, tag_array],
     res,
   )
 }

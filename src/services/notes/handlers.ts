@@ -17,7 +17,7 @@ export function createOne(
   const { pg } = req.server
   const {
     body = '',
-    published_at,
+    published_at = '',
     significance = 0,
     tags = '',
     title,
@@ -64,7 +64,7 @@ export function updateOne(
   const { pg } = req.server
   const {
     body = '',
-    published_at,
+    published_at = '',
     significance = 0,
     tags = '',
     title,
