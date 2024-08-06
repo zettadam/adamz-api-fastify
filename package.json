@@ -13,7 +13,6 @@
   "author": "Adam Ziolkowski <zett.adam@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@fastify/autoload": "5.10.0",
     "@fastify/postgres": "5.2.2",
     "@fastify/sensible": "5.6.0",
     "@fastify/type-provider-typebox": "4.0.0",
