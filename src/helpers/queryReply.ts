@@ -10,7 +10,7 @@ export default async function queryReply(
   try {
     const result = await pg.query(sql, params)
     reply.header('content-type', 'application/json')
-    reply.send(JSON.stringify(result.rows))
+    reply.send(result.rows)
   } catch (err) {
     reply.send(err)
   }
