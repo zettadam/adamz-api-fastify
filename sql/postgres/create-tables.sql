@@ -121,12 +121,40 @@ CREATE TABLE
     updated_at timestamptz NULL
   );
   
-CREATE INDEX posts_tags_idx on public.notes USING GIN (tags);
+CREATE INDEX posts_tags_idx on public.posts USING GIN (tags);
 
 ALTER TABLE
   public.posts
 ADD
   CONSTRAINT posts_pkey PRIMARY KEY (id);
+
+
+-- public.tasks_projects
+
+-- Drop table
+
+-- DROP TABLE public.tasks_projects
+
+CREATE TABLE
+  public.tasks_projects (
+    id bigserial NOT NULL,
+    name character varying(255) NOT NULL,
+    description character varying(500) NULL,
+    color character varying(50) NULL,
+    is_archived boolean NOT NULL DEFAULT false,
+    is_deleted boolean NOT NULL DEFAULT false,
+    is_favorite boolean NOT NULL DEFAULT false,
+    tags varchar[] NULL,
+    created_at timestamp with time zone NOT NULL DEFAULT now(),
+    updated_at timestamp with time zone NULL
+  );
+
+CREATE INDEX tasks_projects_tags_idx on public.tasks_projects USING GIN (tags);
+
+ALTER TABLE
+  public.tasks_projects
+ADD
+  CONSTRAINT tasks_projects_pkey PRIMARY KEY (id)
 
 
 -- public.tasks
@@ -137,7 +165,9 @@ ADD
 
 CREATE TABLE
   public.tasks (
-    id serial NOT NULL,
+    id bigserial NOT NULL,
+    project_id bigint NULL,
+    task_id bigint NULL,
     title varchar(255) NOT NULL,
     description varchar(1000) NULL,
     start_time timestamptz NULL,
