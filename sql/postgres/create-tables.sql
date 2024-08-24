@@ -37,8 +37,8 @@ CREATE TABLE
     id bigserial NOT NULL,
     title varchar(255) NOT NULL,
     description varchar(1000) NOT NULL,
-    start_time timestamptz NULL,
-    end_time timestamptz NULL,
+    start_at timestamptz NULL,
+    end_at timestamptz NULL,
     created_at timestamptz NOT NULL DEFAULT now(),
     updated_at timestamptz NULL
   );
@@ -143,7 +143,7 @@ CREATE TABLE
     color character varying(50) NULL,
     is_archived boolean NOT NULL DEFAULT false,
     is_deleted boolean NOT NULL DEFAULT false,
-    is_favorite boolean NOT NULL DEFAULT false,
+    is_pinned boolean NOT NULL DEFAULT false,
     tags varchar[] NULL,
     created_at timestamp with time zone NOT NULL DEFAULT now(),
     updated_at timestamp with time zone NULL
@@ -170,9 +170,11 @@ CREATE TABLE
     task_id bigint NULL,
     title varchar(255) NOT NULL,
     description varchar(1000) NULL,
-    start_time timestamptz NULL,
-    end_time timestamptz NULL,
+    start_at timestamptz NULL,
+    end_at timestamptz NULL,
     tags varchar[] NULL,
+    is_pinned boolean NOT NULL DEFAULT false,
+    priority smallint NOT NULL DEFAULT 0,
     created_at timestamptz NOT NULL DEFAULT now(),
     updated_at timestamptz NULL
   );

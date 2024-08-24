@@ -1,56 +1,62 @@
 const queries = {
+  // TODO: Add queriies for task projects
+
   /* CRUD ------------------------------------------------------------------ */
 
-  createOne: `
+  createOneTask: `
     INSERT INTO public.tasks (
-        title, description, tags
+        project_id, task_id, title, description, start_at, end_at, tags
     ) VALUES (
-        $1, $2, $3
+        $1, $2, $3, $4, $5, $6, $7
     ) RETURNING id;
   `,
 
-  readOne: `
+  readOneTask: `
     SELECT * FROM public.tasks t
     WHERE t.id = $1;
   `,
 
-  updateOne: `
+  updateOneTask: `
     UPDATE public.tasks
-    SET title = $2, 
-        description = $3,
-        tags = $4,
+    SET project_id = $2,
+        yask_id = $3,
+        title = $4,
+        description = $5,
+        start_at = $6,
+        end_at = $7,
+        tags = $8,
         updated_at = NOW()
     WHERE id = $1
     RETURNING *;
   `,
 
-  deleteOne: `
+  deleteOneTask: `
     DELETE from public.tasks
     WHERE id = $1;
   `,
 
   /* OTHER ----------------------------------------------------------------- */
 
-  readLatest: `
+  readLatestTasks: `
     SELECT * FROM public.tasks t
     ORDER BY t.created_at DESC
     LIMIT 10
     OFFSET 0;
   `,
 
-  readAll: `
+  readAllTasks: `
     SELECT * FROM public.tasks t
     ORDER BY t.created_at DESC;
   `,
 
-  readAllInYear: `
+  readAllTasksInYear: `
     SELECT * FROM public.tasks t
     WHERE
         DATE_PART('year', t.created_at) = $1
     ORDER BY t.created_at DESC;
   `,
 
-  readAllInMonth: `
+  readAllTasksInMonth: `
     SELECT * FROM public.tasks t
     WHERE
         DATE_PART('year', t.created_at) = $1
@@ -58,7 +64,7 @@ const queries = {
     ORDER BY t.created_at DESC;
   `,
 
-  readAllInDay: `
+  readAllTasksInDay: `
     SELECT * FROM public.tasks t
     WHERE
         DATE_PART('year', t.created_at) = $1

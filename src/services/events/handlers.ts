@@ -13,17 +13,17 @@ export function createOne(
   req: Request<{
     Body: {
       description?: string
-      end_time: string
-      start_time: string
+      end_at: string
+      start_at: string
       title: string
     }
   }>,
   res: Reply,
 ): void {
   const { pg } = req.server
-  const { description = '', end_time, start_time, title } = req.body
+  const { description = '', end_at, start_at, title } = req.body
 
-  queryReply(pg, q.createOne, [title, description, start_time, end_time], res)
+  queryReply(pg, q.createOne, [title, description, start_at, end_at], res)
 }
 
 export function readOne(
@@ -46,8 +46,8 @@ export function updateOne(
   req: Request<{
     Body: {
       description?: string
-      end_time: string
-      start_time: string
+      end_at: string
+      start_at: string
       title: string
     }
     Params: { id: string }
@@ -55,15 +55,10 @@ export function updateOne(
   res: Reply,
 ): void {
   const { pg } = req.server
-  const { description = '', end_time, start_time, title } = req.body
+  const { description = '', end_at, start_at, title } = req.body
   const { id } = req.params
 
-  queryReply(
-    pg,
-    q.updateOne,
-    [id, title, description, start_time, end_time],
-    res,
-  )
+  queryReply(pg, q.updateOne, [id, title, description, start_at, end_at], res)
 }
 
 export function deleteOne(

@@ -11,12 +11,14 @@ export default function (
   _: FastifyPluginOptions,
   next: (error?: Error) => void,
 ): void {
-  f.post('/new', {}, h.createOne)
-  f.get('/:id', {}, h.readOne)
-  f.put('/:id', {}, h.updateOne)
-  f.delete('/:id', {}, h.deleteOne)
+  // TODO: Split this into task projects and tasks
 
-  f.get('/', {}, h.readLatest)
+  f.post('/new', {}, h.createOneTask)
+  f.get('/:id', {}, h.readOneTask)
+  f.put('/:id', {}, h.updateOneTask)
+  f.delete('/:id', {}, h.deleteOneTask)
+
+  f.get('/', {}, h.readLatestTasks)
 
   next()
 }

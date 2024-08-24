@@ -8,14 +8,24 @@ import { TaskRequest } from './models.js'
 
 /* --- end of imports ------------------------------------------------------ */
 
+// TODO: Add handlers for task projects
+
 /* CRUD -------------------------------------------------------------------- */
 
-export function createOne(
+export function createOneTask(
   req: Request<{ Body: TaskRequest }>,
   res: Reply,
 ): void {
   const { pg } = req.server
-  const { description = '', tags = '', title } = req.body
+  const {
+    description = '',
+    end_at = null,
+    project_id = null,
+    start_at = null,
+    tags = '',
+    task_id = null,
+    title,
+  } = req.body
 
   const tag_array = tags
     ? `{${tags
@@ -24,24 +34,29 @@ export function createOne(
         .join(',')}}`
     : `{}`
 
-  queryReply(pg, q.createOne, [title, description, tag_array], res)
+  queryReply(
+    pg,
+    q.createOneTask,
+    [project_id, task_id, title, description, start_at, end_at, tag_array],
+    res,
+  )
 }
 
-export function readOne(
+export function readOneTask(
   req: Request<{ Params: { id: string } }>,
   res: Reply,
 ): void {
   const { pg } = req.server
   const { id } = req.params
-  queryReply(pg, q.readOne, [id], res)
+  queryReply(pg, q.readOneTask, [id], res)
 }
 
-export function readLatest(req: Request, res: Reply): void {
+export function readLatestTasks(req: Request, res: Reply): void {
   const { pg } = req.server
-  queryReply(pg, q.readLatest, [], res)
+  queryReply(pg, q.readLatestTasks, [], res)
 }
 
-export function updateOne(
+export function updateOneTask(
   req: Request<{
     Body: TaskRequest
     Params: { id: string }
@@ -49,7 +64,15 @@ export function updateOne(
   res: Reply,
 ): void {
   const { pg } = req.server
-  const { description = '', tags = '', title } = req.body
+  const {
+    description = '',
+    end_at = null,
+    project_id = null,
+    start_at = null,
+    tags = '',
+    task_id = null,
+    title,
+  } = req.body
   const { id } = req.params
 
   const tag_array = tags
@@ -59,13 +82,18 @@ export function updateOne(
         .join(',')}}`
     : `{}`
 
-  queryReply(pg, q.updateOne, [id, title, description, tag_array], res)
+  queryReply(
+    pg,
+    q.updateOneTask,
+    [id, project_id, task_id, title, description, start_at, end_at, tag_array],
+    res,
+  )
 }
 
-export function deleteOne(
+export function deleteOneTask(
   req: Request<{ Params: { id: string } }>,
   res: Reply,
 ) {
   const { pg } = req.server
-  queryReply(pg, q.deleteOne, [req.params.id], res)
+  queryReply(pg, q.deleteOneTask, [req.params.id], res)
 }

@@ -3,7 +3,7 @@ const queries = {
 
   createOne: `
     INSERT INTO public.events (
-        title, description, start_time, end_time
+        title, description, start_at, end_at
     ) VALUES (
         $1, $2, $3, $4
     ) RETURNING id;
@@ -18,8 +18,8 @@ const queries = {
     UPDATE public.events
     SET title = $2,
         description = $3,
-        start_time = $4,
-        end_time = $5,
+        start_at = $4,
+        end_at = $5,
         updated_at = NOW()
     WHERE id = $1
     RETURNING *;
