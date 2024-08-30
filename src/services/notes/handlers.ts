@@ -19,6 +19,7 @@ export function createOne(
     body = '',
     published_at = '',
     significance = 0,
+    slug,
     tags = '',
     title,
   } = req.body
@@ -33,7 +34,7 @@ export function createOne(
   queryReply(
     pg,
     q.createOne,
-    [title, body, significance, published_at || null, tag_array],
+    [title, slug, body, significance, published_at || null, tag_array],
     res,
   )
 }
@@ -66,6 +67,7 @@ export function updateOne(
     body = '',
     published_at = '',
     significance = 0,
+    slug,
     tags = '',
     title,
   } = req.body
@@ -81,7 +83,7 @@ export function updateOne(
   queryReply(
     pg,
     q.updateOne,
-    [id, title, body, significance, published_at || null, tag_array],
+    [id, title, slug, body, significance, published_at || null, tag_array],
     res,
   )
 }

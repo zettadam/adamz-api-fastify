@@ -2,7 +2,8 @@ import { Static, Type } from '@sinclair/typebox'
 
 export const Note = Type.Object({
   id: Type.Number(),
-  title: Type.String({ maxLength: 200 }),
+  title: Type.String({ maxLength: 255 }),
+  slug: Type.String({ maxLength: 255 }),
   body: Type.Optional(Type.String()),
   significance: Type.Optional(Type.Number()),
   published_at: Type.Union([Type.Null(), Type.String({ maxLength: 50 })]),

@@ -1,8 +1,6 @@
 
 -- public.code_snippets
 
--- Drop table
-
 -- DROP TABLE public.code_snippets;
 
 CREATE TABLE
@@ -28,8 +26,6 @@ ADD
 
 -- public.events
 
--- Drop table
-
 -- DROP TABLE public.events;
 
 CREATE TABLE
@@ -50,8 +46,6 @@ ADD
 
 
 -- public.links
-
--- Drop table
 
 -- DROP TABLE public.links;
 
@@ -76,14 +70,13 @@ ADD
 
 -- public.notes
 
--- Drop table
-
 -- DROP TABLE public.notes;
 
 CREATE TABLE
   public.notes (
     id bigserial NOT NULL,
     title varchar(255) NOT NULL,
+    slug varchar(255) NOT NULL,
     body text NULL,
     significance smallint NOT NULL DEFAULT 0,
     published_at timestamptz NULL,
@@ -102,8 +95,6 @@ ADD
 
 
 -- public.posts
-
--- Drop table
 
 -- DROP TABLE public.posts;
 
@@ -131,15 +122,13 @@ ADD
 
 -- public.tasks_projects
 
--- Drop table
-
 -- DROP TABLE public.tasks_projects
 
 CREATE TABLE
   public.tasks_projects (
     id bigserial NOT NULL,
     name character varying(255) NOT NULL,
-    description character varying(500) NULL,
+    description character varying(1000) NULL,
     color character varying(50) NULL,
     is_archived boolean NOT NULL DEFAULT false,
     is_deleted boolean NOT NULL DEFAULT false,
@@ -158,8 +147,6 @@ ADD
 
 
 -- public.tasks
-
--- Drop table
 
 -- DROP TABLE public.tasks;
 
